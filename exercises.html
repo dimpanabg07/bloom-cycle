@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercises — Bloom Cycle</title>
+    <meta
+      name="description"
+      content="Beginner-friendly yoga, stretching, walking and breathing routines for PMS relief, plus a routine generator based on how you feel."
+    />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='12' fill='%23fbe2ec'/%3E%3Ccircle cx='12' cy='8' r='3.4' fill='%23de7fa4'/%3E%3Ccircle cx='16.2' cy='13' r='3.4' fill='%23b79bec'/%3E%3Ccircle cx='7.8' cy='13' r='3.4' fill='%23f0a8c4'/%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..600&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/pages.css" />
+  </head>
+
+  <body data-page="exercises">
+    <a class="sr-only" href="#main">Skip to content</a>
+    <header class="site-header" data-nav></header>
+
+    <main class="app-main container" id="main">
+      <header class="page-head">
+        <p class="eyebrow">Exercises</p>
+        <h1>Move gently, on your own terms</h1>
+        <p class="page-sub">
+          Beginner-friendly movement for days when PMS makes everything feel heavier. Five minutes
+          counts. Resting counts too.
+        </p>
+      </header>
+
+      <!-- ------------------------- Routine generator ------------------------ -->
+      <section class="card" aria-labelledby="generatorTitle">
+        <div class="card-head">
+          <div>
+            <h2 class="card-title" id="generatorTitle">Build a gentle routine</h2>
+            <p class="card-sub">
+              Tell us what you're feeling and we'll suggest a short sequence you can do at home.
+            </p>
+          </div>
+          <span class="badge badge-soft" id="selectedCount">Nothing selected</span>
+        </div>
+
+        <div id="generatorOptions" class="chip-grid" role="group" aria-label="How are you feeling today?"></div>
+
+        <div class="btn-row">
+          <button class="btn btn-primary" type="button" id="generateButton">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1" />
+            </svg>
+            Suggest a routine
+          </button>
+          <button class="btn btn-ghost" type="button" id="resetGenerator">Reset</button>
+        </div>
+
+        <div id="routineResult" aria-live="polite"></div>
+      </section>
+
+      <!-- --------------------------- Exercise library ----------------------- -->
+      <section class="section-gap">
+        <div class="flex-between" style="margin-bottom: 14px">
+          <div>
+            <h2 class="card-title">Exercise library</h2>
+            <p class="card-sub">Every option is beginner-friendly and can be paused at any point.</p>
+          </div>
+          <span class="badge badge-soft" id="doneBadge">0 done today</span>
+        </div>
+        <div class="ex-grid" id="exerciseGrid"></div>
+      </section>
+
+      <!-- ----------------------------- Safety note -------------------------- -->
+      <section class="card section-gap">
+        <div class="card-head">
+          <div>
+            <h2 class="card-title">Please do not force it</h2>
+            <p class="card-sub">Movement should feel like an offer, never an obligation.</p>
+          </div>
+        </div>
+        <div class="value-grid">
+          <div class="value-card">
+            <span class="value-emoji" aria-hidden="true">🛌</span>
+            <h3>Rest is a valid choice</h3>
+            <p>On heavy flow or high-pain days, lying down with a heat pack may help more than any stretch.</p>
+          </div>
+          <div class="value-card">
+            <span class="value-emoji" aria-hidden="true">🌬️</span>
+            <h3>Breathing still counts</h3>
+            <p>If you only manage three slow breaths, that is a complete practice for today.</p>
+          </div>
+          <div class="value-card">
+            <span class="value-emoji" aria-hidden="true">🛑</span>
+            <h3>Stop if something hurts</h3>
+            <p>Sharp pain, dizziness or unusual shortness of breath means stop and seek advice.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer" data-footer></footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/cycle.js"></script>
+    <script src="js/store.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/exercises.js"></script>
+  </body>
+</html>

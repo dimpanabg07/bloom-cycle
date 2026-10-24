@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cycle Analysis — Bloom Cycle</title>
+    <meta
+      name="description"
+      content="See your average cycle length, symptom patterns, mood trends and cycle history, calculated from your own logs."
+    />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='12' fill='%23fbe2ec'/%3E%3Ccircle cx='12' cy='8' r='3.4' fill='%23de7fa4'/%3E%3Ccircle cx='16.2' cy='13' r='3.4' fill='%23b79bec'/%3E%3Ccircle cx='7.8' cy='13' r='3.4' fill='%23f0a8c4'/%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..600&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/pages.css" />
+  </head>
+
+  <body data-page="analysis">
+    <a class="sr-only" href="#main">Skip to content</a>
+    <header class="site-header" data-nav></header>
+
+    <main class="app-main container" id="main">
+      <header class="page-head">
+        <p class="eyebrow">Cycle analysis</p>
+        <h1>Your patterns, gently explained</h1>
+        <p class="page-sub">
+          Everything below is calculated from the days you have logged. The more you track, the
+          clearer the picture becomes.
+        </p>
+      </header>
+
+      <!-- Shown only when there is nothing to analyse yet. -->
+      <section class="card hidden" id="emptyState">
+        <div class="empty-state">
+          <span class="empty-emoji">🌸</span>
+          <strong>Not enough data just yet</strong>
+          <p>
+            Log your period days and a few daily check-ins, and Bloom Cycle will start showing
+            your average cycle length, symptom patterns and cycle history here.
+          </p>
+          <div class="btn-row" style="justify-content: center">
+            <a class="btn btn-primary btn-sm" href="tracker.html">Start tracking</a>
+            <button class="btn btn-soft btn-sm" type="button" data-seed>Load sample data</button>
+          </div>
+        </div>
+      </section>
+
+      <div class="stack" id="analysisBody">
+        <div class="disclaimer hidden" id="dataNotice">
+          <span aria-hidden="true">🌱</span>
+          <p id="dataNoticeText"></p>
+        </div>
+
+        <!-- ------------------------------ KPIs ------------------------------ -->
+        <section class="kpi-row" aria-label="Cycle summary">
+          <article class="kpi">
+            <p class="kpi-label">Average cycle</p>
+            <p class="kpi-value" id="kpiCycle">–</p>
+            <p class="kpi-note" id="kpiCycleNote">—</p>
+          </article>
+          <article class="kpi">
+            <p class="kpi-label">Average period</p>
+            <p class="kpi-value" id="kpiPeriod">–</p>
+            <p class="kpi-note" id="kpiPeriodNote">—</p>
+          </article>
+          <article class="kpi">
+            <p class="kpi-label">Predicted next period</p>
+            <p class="kpi-value" id="kpiNext">–</p>
+            <p class="kpi-note" id="kpiNextNote">Estimate only</p>
+          </article>
+          <article class="kpi">
+            <p class="kpi-label">Tracked</p>
+            <p class="kpi-value" id="kpiTracked">–</p>
+            <p class="kpi-note" id="kpiTrackedNote">—</p>
+          </article>
+        </section>
+
+        <!-- --------------------- Chart + prediction ------------------------- -->
+        <div class="grid-2">
+          <section class="card" aria-labelledby="lengthTitle">
+            <div class="card-head">
+              <div>
+                <h2 class="card-title" id="lengthTitle">Cycle lengths over time</h2>
+                <p class="card-sub">Days between the first day of each period.</p>
+              </div>
+            </div>
+            <div class="chart-wrap" id="lengthChart"></div>
+            <p class="chart-caption" id="lengthCaption"></p>
+          </section>
+
+          <section class="card" aria-labelledby="predictionTitle">
+            <div class="card-head">
+              <div>
+                <h2 class="card-title" id="predictionTitle">Next period estimate</h2>
+                <p class="card-sub">A guide, never a guarantee.</p>
+              </div>
+              <span class="badge badge-soft">Estimate</span>
+            </div>
+            <div class="next-period">
+              <span class="next-period-icon" aria-hidden="true">🌷</span>
+              <div>
+                <div class="next-period-value" id="predictionDate">–</div>
+                <p class="small muted" id="predictionIn">–</p>
+              </div>
+            </div>
+            <hr class="divider" />
+            <ul class="insight-list" id="predictionNotes"></ul>
+          </section>
+        </div>
+
+        <!-- -------------------- Symptoms and moods -------------------------- -->
+        <div class="grid-2">
+          <section class="card" aria-labelledby="symptomTitle">
+            <div class="card-head">
+              <div>
+                <h2 class="card-title" id="symptomTitle">Frequently reported symptoms</h2>
+                <p class="card-sub">How many logged days mentioned each one.</p>
+              </div>
+            </div>
+            <div id="symptomChart"></div>
+            <p class="chart-caption" id="symptomCaption"></p>
+          </section>
+
+          <section class="card" aria-labelledby="moodTitle">
+            <div class="card-head">
+              <div>
+                <h2 class="card-title" id="moodTitle">Mood patterns</h2>
+                <p class="card-sub">The moods you record most often.</p>
+              </div>
+            </div>
+            <div id="moodChart"></div>
+            <p class="chart-caption" id="moodCaption"></p>
+          </section>
+        </div>
+
+        <!-- --------------------------- Insights ----------------------------- -->
+        <section class="card" aria-labelledby="insightTitle">
+          <div class="card-head">
+            <div>
+              <h2 class="card-title" id="insightTitle">What your data is telling you</h2>
+              <p class="card-sub">Simple observations from your own check-ins.</p>
+            </div>
+          </div>
+          <ul class="insight-list" id="insights"></ul>
+        </section>
+
+        <!-- ------------------------- Cycle history -------------------------- -->
+        <section class="card" aria-labelledby="historyTitle">
+          <div class="card-head">
+            <div>
+              <h2 class="card-title" id="historyTitle">Cycle history</h2>
+              <p class="card-sub">Newest first. Dates are when you logged a period start.</p>
+            </div>
+            <a class="inline-link" href="tracker.html">Add a check-in →</a>
+          </div>
+          <ol class="timeline" id="timeline"></ol>
+        </section>
+
+        <div class="disclaimer">
+          <span aria-hidden="true">💡</span>
+          <p>
+            <strong>Estimates, not guarantees.</strong> Bloom Cycle calculates your cycle length,
+            phases and ovulation window from the dates you log, so they shift as your body does.
+            This is not a contraceptive method and not a medical diagnosis. If your cycles are
+            very irregular, very painful or your symptoms disrupt daily life, please speak with
+            a qualified healthcare professional.
+          </p>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer" data-footer></footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/cycle.js"></script>
+    <script src="js/store.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/analysis.js"></script>
+  </body>
+</html>

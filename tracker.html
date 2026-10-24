@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cycle Tracker — Bloom Cycle</title>
+    <meta
+      name="description"
+      content="Log your flow, symptoms, mood and energy, and watch your cycle phases take shape."
+    />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='12' fill='%23fbe2ec'/%3E%3Ccircle cx='12' cy='8' r='3.4' fill='%23de7fa4'/%3E%3Ccircle cx='16.2' cy='13' r='3.4' fill='%23b79bec'/%3E%3Ccircle cx='7.8' cy='13' r='3.4' fill='%23f0a8c4'/%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..600&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/pages.css" />
+  </head>
+
+  <body data-page="tracker">
+    <a class="sr-only" href="#main">Skip to content</a>
+    <header class="site-header" data-nav></header>
+
+    <main class="app-main container" id="main">
+      <header class="page-head">
+        <p class="eyebrow">Cycle tracker</p>
+        <h1>Check in with yourself</h1>
+        <p class="page-sub">
+          A minute a day is enough. Everything you log stays in this browser and helps Bloom
+          Cycle estimate your phases more accurately.
+        </p>
+      </header>
+
+      <div class="tracker-layout">
+        <div class="tracker-main">
+          <!-- Live summary of the cycle position. -->
+          <section class="summary-strip" id="summary" aria-label="Current cycle summary"></section>
+
+          <!-- ------------------------- Daily check-in ------------------------ -->
+          <section class="card" id="logCard">
+            <div class="card-head">
+              <div>
+                <h2 class="card-title">Daily check-in</h2>
+                <p class="card-sub">One entry per day — you can edit or delete it any time.</p>
+              </div>
+              <span class="badge badge-soft" id="entryBadge">New entry</span>
+            </div>
+
+            <form id="logForm" novalidate>
+              <div class="field">
+                <label for="logDate">Date</label>
+                <input type="date" id="logDate" name="date" required />
+              </div>
+
+              <div class="field">
+                <span class="field-label" id="flowLabel">Flow intensity</span>
+                <div class="flow-grid" id="flowOptions" role="group" aria-labelledby="flowLabel"></div>
+              </div>
+
+              <div class="field">
+                <span class="field-label" id="symptomLabel">Symptoms</span>
+                <div class="chip-grid" id="symptomOptions" role="group" aria-labelledby="symptomLabel"></div>
+              </div>
+
+              <div class="field">
+                <span class="field-label" id="moodLabel">Mood</span>
+                <div class="chip-grid" id="moodOptions" role="group" aria-labelledby="moodLabel"></div>
+              </div>
+
+              <div class="field">
+                <label for="energyRange">Energy level</label>
+                <div class="energy-row">
+                  <input type="range" id="energyRange" min="1" max="5" step="1" value="3" />
+                  <span class="energy-badge" id="energyBadge">Okay</span>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="notesInput">Notes (optional)</label>
+                <textarea id="notesInput" maxlength="280" placeholder="Anything you noticed today…"></textarea>
+                <span class="hint">Saved on this device only.</span>
+              </div>
+
+              <div class="btn-row">
+                <button class="btn btn-primary" type="submit" id="saveButton">Save check-in</button>
+                <button class="btn btn-ghost" type="button" id="clearButton">Clear form</button>
+                <button class="btn btn-danger hidden" type="button" id="deleteButton">
+                  Delete this day
+                </button>
+              </div>
+            </form>
+          </section>
+
+          <!-- --------------------------- Phase calendar ---------------------- -->
+          <section class="card">
+            <div class="card-head">
+              <div>
+                <h2 class="card-title">Your cycle phases</h2>
+                <p class="card-sub">
+                  Dashed days are predicted. Select a day to edit its check-in.
+                </p>
+              </div>
+            </div>
+            <div id="trackerCalendar"></div>
+          </section>
+        </div>
+
+        <!-- ------------------------------ Sidebar ----------------------------- -->
+        <aside class="tracker-side">
+          <section class="card">
+            <div class="card-head">
+              <div>
+                <h2 class="card-title">Cycle settings</h2>
+                <p class="card-sub">Used for estimates until enough cycles are logged.</p>
+              </div>
+            </div>
+
+            <form id="profileForm" novalidate>
+              <div class="field">
+                <label for="nameInput">What should we call you?</label>
+                <input type="text" id="nameInput" maxlength="24" placeholder="Optional" />
+              </div>
+
+              <div class="field">
+                <label for="lastPeriod">First day of your last period</label>
+                <input type="date" id="lastPeriod" />
+              </div>
+
+              <div class="field-row">
+                <div class="field">
+                  <label for="cycleLength">Cycle length (days)</label>
+                  <input type="number" id="cycleLength" min="15" max="60" step="1" value="28" />
+                </div>
+                <div class="field">
+                  <label for="periodDuration">Period length (days)</label>
+                  <input type="number" id="periodDuration" min="1" max="12" step="1" value="5" />
+                </div>
+              </div>
+
+              <div class="btn-row">
+                <button class="btn btn-primary btn-sm" type="submit">Save settings</button>
+              </div>
+              <p class="hint" style="margin-top: 10px">
+                Logging flow on the first day of your period keeps this up to date automatically.
+              </p>
+            </form>
+          </section>
+
+          <section class="card">
+            <div class="card-head">
+              <h2 class="card-title">Your check-ins</h2>
+              <span class="badge badge-soft" id="entryCount">0 entries</span>
+            </div>
+            <div class="entry-list" id="entryList"></div>
+          </section>
+
+          <section class="card card-tight">
+            <p class="small muted">
+              Bloom Cycle stores everything in this browser's local storage. Nothing is uploaded
+              and no account is needed.
+            </p>
+            <div class="btn-row">
+              <button class="btn btn-ghost btn-sm" type="button" id="seedButton">
+                Load sample data
+              </button>
+              <button class="btn btn-danger btn-sm" type="button" id="resetButton">
+                Clear all data
+              </button>
+            </div>
+          </section>
+        </aside>
+      </div>
+    </main>
+
+    <footer class="site-footer" data-footer></footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/cycle.js"></script>
+    <script src="js/store.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/tracker.js"></script>
+  </body>
+</html>

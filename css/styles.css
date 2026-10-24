@@ -1,0 +1,776 @@
+/* =====================================================================
+   Bloom Cycle — shared design system
+   1. Tokens      2. Reset/base   3. Layout     4. Header/nav
+   5. Buttons     6. Cards        7. Badges     8. Forms
+   9. Chips       10. Utilities   11. Footer    12. Responsive
+   ===================================================================== */
+
+/* ------------------------------ 1. Tokens --------------------------- */
+:root {
+  /* Pastel palette: pink, lavender, cream, soft purple */
+  --cream: #fff7f1;
+  --cream-deep: #fdefe6;
+  --pink-50: #fdf2f6;
+  --pink-100: #fbe2ec;
+  --pink-200: #f7c6d9;
+  --pink-300: #f0a8c4;
+  --pink-500: #de7fa4;
+  --lav-50: #f6f1fe;
+  --lav-100: #ede3fc;
+  --lav-200: #ddcbf8;
+  --lav-400: #b79bec;
+  --purple-500: #9b7be0;
+  --purple-600: #7c5cbf;
+  --purple-800: #463261;
+  --ink: #3b2e4a;
+  --ink-soft: #6b5d7e;
+  --muted: #918aa0;
+  --line: #f0e6f4;
+  --white: #ffffff;
+
+  /* Typography */
+  --font-display: "Fraunces", "Iowan Old Style", Georgia, "Times New Roman", serif;
+  --font-body: "Nunito", "Segoe UI", system-ui, -apple-system, sans-serif;
+
+  /* Shape & depth */
+  --radius-xl: 32px;
+  --radius-lg: 24px;
+  --radius: 18px;
+  --radius-sm: 12px;
+  --shadow-xs: 0 1px 3px rgba(70, 50, 97, 0.07);
+  --shadow-sm: 0 6px 18px -10px rgba(70, 50, 97, 0.24);
+  --shadow: 0 16px 36px -20px rgba(124, 92, 191, 0.42);
+  --shadow-lg: 0 34px 70px -34px rgba(124, 92, 191, 0.55);
+
+  --grad-brand: linear-gradient(135deg, #9b7be0, #de7fa4);
+  --grad-soft: linear-gradient(135deg, #f3e9fe 0%, #fde4ee 100%);
+}
+
+/* ------------------------------ 2. Reset ---------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink);
+  background-color: var(--cream);
+  background-image:
+    radial-gradient(900px 520px at 6% -10%, #fbe2ec 0%, rgba(251, 226, 236, 0) 62%),
+    radial-gradient(820px 540px at 100% 0%, #ede3fc 0%, rgba(237, 227, 252, 0) 58%),
+    radial-gradient(760px 520px at 50% 108%, #fdefe6 0%, rgba(253, 239, 230, 0) 62%);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--purple-800);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: var(--purple-600);
+  text-decoration: none;
+}
+
+img,
+svg {
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid rgba(183, 155, 236, 0.55);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: var(--lav-200);
+  color: var(--purple-800);
+}
+
+/* ------------------------------ 3. Layout --------------------------- */
+.container {
+  width: min(1160px, 100% - 40px);
+  margin-inline: auto;
+}
+
+.app-main {
+  padding-block: 26px 72px;
+}
+
+.page-head {
+  margin-bottom: 26px;
+  max-width: 720px;
+}
+
+.page-head h1 {
+  font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+  margin-top: 6px;
+}
+
+.page-sub {
+  margin-top: 10px;
+  color: var(--ink-soft);
+  font-size: 1rem;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  align-items: start;
+}
+
+.section-gap {
+  margin-top: 26px;
+}
+
+/* -------------------------- 4. Header / nav ------------------------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  padding-top: 14px;
+}
+
+.nav {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 12px 10px 16px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.76);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: var(--shadow-sm);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-size: 1.16rem;
+  font-weight: 600;
+  color: var(--purple-800);
+  white-space: nowrap;
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 13px;
+  background: var(--grad-soft);
+  color: #c77fa9;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.9);
+}
+
+.brand-mark svg {
+  width: 22px;
+  height: 22px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+}
+
+.nav-link {
+  padding: 9px 14px;
+  border-radius: 999px;
+  font-size: 0.925rem;
+  font-weight: 700;
+  color: var(--ink-soft);
+  transition: background 0.18s ease, color 0.18s ease;
+  white-space: nowrap;
+}
+
+.nav-link:hover {
+  background: var(--pink-50);
+  color: var(--purple-800);
+}
+
+.nav-link[aria-current="page"] {
+  background: var(--grad-soft);
+  color: #5b4785;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.9);
+}
+
+.nav-toggle {
+  display: none;
+  margin-left: auto;
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 14px;
+  background: var(--lav-50);
+  color: var(--purple-600);
+  cursor: pointer;
+  place-items: center;
+}
+
+.nav-toggle svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ----------------------------- 5. Buttons --------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 12px 20px;
+  border: 0;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 0.94rem;
+  font-weight: 800;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+.btn svg {
+  width: 17px;
+  height: 17px;
+}
+
+.btn-primary {
+  color: #fff;
+  background: linear-gradient(135deg, #8e6bd6, #cf7fa9);
+  box-shadow: 0 14px 26px -14px rgba(142, 107, 214, 0.9);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 32px -16px rgba(142, 107, 214, 0.9);
+}
+
+.btn-soft {
+  color: var(--purple-600);
+  background: #fff;
+  box-shadow: inset 0 0 0 1px var(--lav-100), var(--shadow-xs);
+}
+
+.btn-soft:hover {
+  transform: translateY(-2px);
+  box-shadow: inset 0 0 0 1px var(--lav-200), var(--shadow-sm);
+}
+
+.btn-ghost {
+  padding: 10px 14px;
+  color: var(--ink-soft);
+  background: transparent;
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+
+.btn-ghost:hover {
+  background: #fff;
+  color: var(--purple-800);
+}
+
+.btn-danger {
+  color: #b6436a;
+  background: #fff;
+  box-shadow: inset 0 0 0 1px #fadbe5;
+}
+
+.btn-danger:hover {
+  background: #fdf2f6;
+}
+
+.btn-sm {
+  padding: 8px 14px;
+  font-size: 0.84rem;
+}
+
+.btn-icon {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--lav-50);
+  color: var(--purple-600);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: background 0.18s ease, transform 0.18s ease;
+}
+
+.btn-icon:hover {
+  background: var(--lav-100);
+  transform: translateY(-1px);
+}
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* ------------------------------ 6. Cards ---------------------------- */
+.card {
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+.card-tight {
+  padding: 18px;
+}
+
+.card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.card-sub {
+  margin-top: 4px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: var(--purple-500);
+}
+
+.soft-panel {
+  padding: 16px;
+  border-radius: var(--radius);
+  background: var(--lav-50);
+  border: 1px solid var(--lav-100);
+}
+
+.divider {
+  height: 1px;
+  margin: 18px 0;
+  background: var(--line);
+  border: 0;
+}
+
+/* ----------------------------- 7. Badges ---------------------------- */
+.phase-pill,
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  background: var(--lav-50);
+  color: var(--purple-600);
+  white-space: nowrap;
+}
+
+.badge-pink {
+  background: var(--pink-50);
+  color: #a24a6d;
+}
+
+.badge-soft {
+  background: #f7f4fb;
+  color: var(--ink-soft);
+}
+
+.phase-pill.tone-rose {
+  background: #fde4ee;
+  color: #9c4265;
+}
+
+.phase-pill.tone-violet {
+  background: var(--lav-100);
+  color: #5f4a93;
+}
+
+.phase-pill.tone-peach {
+  background: #ffe9d8;
+  color: #9a5e32;
+}
+
+.phase-pill.tone-lilac {
+  background: #f3ecfa;
+  color: #6b5d7e;
+}
+
+/* ------------------------------ 8. Forms ---------------------------- */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.field + .field {
+  margin-top: 16px;
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.field label,
+.field-label {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--ink-soft);
+  letter-spacing: 0.01em;
+}
+
+input[type="date"],
+input[type="number"],
+input[type="text"],
+select,
+textarea {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 0.95rem;
+  color: var(--ink);
+  background: #fff;
+  border: 1px solid var(--lav-100);
+  border-radius: 14px;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+input[type="date"]:hover,
+input[type="number"]:hover,
+input[type="text"]:hover,
+select:hover,
+textarea:hover {
+  border-color: var(--lav-200);
+}
+
+input[type="date"]:focus,
+input[type="number"]:focus,
+input[type="text"]:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--lav-400);
+  box-shadow: 0 0 0 4px rgba(183, 155, 236, 0.18);
+  outline: none;
+}
+
+textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+
+.hint {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+/* ------------------------------ 9. Chips ---------------------------- */
+.chip-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 14px;
+  border: 1px solid var(--lav-100);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--ink-soft);
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+
+.chip:hover {
+  border-color: var(--pink-200);
+  transform: translateY(-1px);
+}
+
+.chip[aria-pressed="true"],
+.chip.is-selected {
+  background: var(--grad-soft);
+  border-color: var(--pink-200);
+  color: #6b4e9e;
+  box-shadow: 0 8px 16px -12px rgba(142, 107, 214, 0.9);
+}
+
+.chip-emoji {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+/* ---------------------------- 10. Utilities ------------------------- */
+.muted {
+  color: var(--muted);
+}
+
+.small {
+  font-size: 0.85rem;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.inline-link {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--purple-600);
+}
+
+.inline-link:hover {
+  color: var(--pink-500);
+}
+
+.hidden {
+  display: none !important;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.empty-state {
+  padding: 30px 24px;
+  text-align: center;
+  border-radius: var(--radius);
+  background: var(--lav-50);
+  border: 1px dashed var(--lav-200);
+}
+
+.empty-state .empty-emoji {
+  display: block;
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+}
+
+.empty-state p {
+  max-width: 420px;
+  margin: 6px auto 0;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 26px;
+  z-index: 200;
+  transform: translate(-50%, 20px);
+  padding: 12px 22px;
+  border-radius: 999px;
+  background: rgba(70, 50, 97, 0.94);
+  color: #fff;
+  font-size: 0.88rem;
+  font-weight: 700;
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.24s ease, transform 0.24s ease;
+}
+
+.toast.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* ------------------------------ 11. Footer -------------------------- */
+.site-footer {
+  padding: 30px 0 44px;
+  border-top: 1px solid rgba(240, 230, 244, 0.9);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.footer-brand {
+  max-width: 340px;
+}
+
+.footer-brand p {
+  margin-top: 8px;
+  font-size: 0.84rem;
+  color: var(--muted);
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.footer-links a {
+  color: var(--ink-soft);
+}
+
+.footer-links a:hover {
+  color: var(--purple-600);
+}
+
+.footer-note {
+  margin-top: 22px;
+  font-size: 0.76rem;
+  color: var(--muted);
+  max-width: 760px;
+}
+
+/* ---------------------------- 12. Responsive ------------------------ */
+@media (max-width: 900px) {
+  .nav {
+    flex-wrap: wrap;
+  }
+
+  .nav-toggle {
+    display: grid;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+    padding: 10px;
+    margin: 0;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: var(--shadow);
+  }
+
+  .nav.nav-open .nav-links {
+    display: flex;
+  }
+
+  .nav-link {
+    padding: 12px 14px;
+  }
+
+  .grid-2 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    width: min(1160px, 100% - 28px);
+  }
+
+  .app-main {
+    padding-block: 18px 56px;
+  }
+
+  .card {
+    padding: 20px 18px;
+    border-radius: 22px;
+  }
+
+  .btn {
+    padding: 11px 18px;
+  }
+
+  .brand {
+    font-size: 1.05rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}

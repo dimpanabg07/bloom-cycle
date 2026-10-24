@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About — Bloom Cycle</title>
+    <meta
+      name="description"
+      content="Bloom Cycle is a beginner-friendly, privacy-first menstrual cycle tracker built with plain HTML, CSS and JavaScript."
+    />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='12' fill='%23fbe2ec'/%3E%3Ccircle cx='12' cy='8' r='3.4' fill='%23de7fa4'/%3E%3Ccircle cx='16.2' cy='13' r='3.4' fill='%23b79bec'/%3E%3Ccircle cx='7.8' cy='13' r='3.4' fill='%23f0a8c4'/%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..600&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/pages.css" />
+  </head>
+
+  <body data-page="about">
+    <a class="sr-only" href="#main">Skip to content</a>
+    <header class="site-header" data-nav></header>
+
+    <main class="app-main container" id="main">
+      <header class="page-head">
+        <p class="eyebrow">About Bloom Cycle</p>
+        <h1>A calmer way to understand your cycle</h1>
+        <p class="page-sub">
+          Bloom Cycle began with a simple idea: cycle tracking should feel like a kind
+          conversation, not a spreadsheet of things you failed to do.
+        </p>
+      </header>
+
+      <section class="card about-hero">
+        <div>
+          <h2 class="card-title">Why we keep it simple</h2>
+          <p class="small" style="margin-top: 10px; color: var(--ink-soft)">
+            Most cycle apps ask for an account, a subscription and a lot of personal detail.
+            Bloom Cycle does the opposite. You can log today, glance at your phase, read a
+            practical tip and close the tab. That is enough.
+          </p>
+          <p class="small" style="margin-top: 10px; color: var(--ink-soft)">
+            Everything you enter stays in your own browser. There is no server, no sign-up and
+            no tracking. Clear your data whenever you like and it is genuinely gone.
+          </p>
+          <div class="btn-row">
+            <a class="btn btn-primary" href="tracker.html">Start tracking</a>
+            <a class="btn btn-soft" href="analysis.html">See what the analysis does</a>
+          </div>
+        </div>
+
+        <div class="soft-panel">
+          <p class="eyebrow">What you get</p>
+          <ul class="remedy-block" style="margin-top: 10px; font-size: 0.9rem; color: var(--ink-soft)">
+            <li>Estimated cycle day, phase and next period date.</li>
+            <li>Daily logs for flow, symptoms, mood, energy and notes.</li>
+            <li>Charts and insights built only from your own data.</li>
+            <li>PMS remedies and gentle exercise routines.</li>
+            <li>Private, offline-friendly storage on your device.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ------------------------------ Values ------------------------------ -->
+      <section class="section-gap">
+        <div class="value-grid">
+          <div class="value-card">
+            <span class="value-emoji" aria-hidden="true">🕊️</span>
+            <h3>Gentle by default</h3>
+            <p>No streaks to protect, no guilt, no red warnings. You can skip days.</p>
+          </div>
+          <div class="value-card">
+            <span class="value-emoji" aria-hidden="true">🔒</span>
+            <h3>Private by design</h3>
+            <p>Your data lives in localStorage on this device. Nothing leaves the browser.</p>
+          </div>
+          <div class="value-card">
+            <span class="value-emoji" aria-hidden="true">📊</span>
+            <h3>Honest about estimates</h3>
+            <p>Every prediction is labelled as an estimate based on your logged history.</p>
+          </div>
+          <div class="value-card">
+            <span class="value-emoji" aria-hidden="true">🧠</span>
+            <h3>Learn, don't diagnose</h3>
+            <p>Bloom Cycle offers education and reflection — not medical advice.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ---------------------------- How it works -------------------------- -->
+      <section class="card section-gap">
+        <div class="card-head">
+          <div>
+            <h2 class="card-title">How the numbers work</h2>
+            <p class="card-sub">A quick look under the hood, in plain language.</p>
+          </div>
+        </div>
+        <div class="value-grid">
+          <div class="value-card">
+            <span class="value-emoji" aria-hidden="true">1️⃣</span>
+            <h3>Cycle length</h3>
+            <p>
+              Days between the first day of one period and the first day of the next. The
+              average uses every completed cycle you have logged.
+            </p>
+          </div>
+          <div class="value-card">
+            <span class="value-emoji" aria-hidden="true">2️⃣</span>
+            <h3>Phases</h3>
+            <p>
+              The menstrual phase covers your period days. Ovulation is estimated about 14 days
+              before the next period, and the follicular and luteal phases fill the rest.
+            </p>
+          </div>
+          <div class="value-card">
+            <span class="value-emoji" aria-hidden="true">3️⃣</span>
+            <h3>Insights</h3>
+            <p>
+              Symptoms and moods are counted per cycle, so a comment like “cramps in 3 of your
+              last 4 cycles” comes from your actual entries.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- -------------------------------- FAQ ------------------------------- -->
+      <section class="card section-gap">
+        <div class="card-head">
+          <div>
+            <h2 class="card-title">Questions you might have</h2>
+            <p class="card-sub">Short answers, no fine print.</p>
+          </div>
+        </div>
+        <div class="faq">
+          <details>
+            <summary>Where is my data stored?</summary>
+            <p>
+              In your browser's localStorage under the key <code>bloomcycle.v1</code>. It stays
+              after a refresh and is removed if you clear site data or press “Clear all data” in
+              the tracker.
+            </p>
+          </details>
+          <details>
+            <summary>Can I use one account on two devices?</summary>
+            <p>
+              Not currently. Because nothing is uploaded, each browser keeps its own copy. This
+              is the trade-off for having no account and no server.
+            </p>
+          </details>
+          <details>
+            <summary>How accurate is the next period prediction?</summary>
+            <p>
+              It is as accurate as your cycle is regular. It is an estimate calculated from your
+              average cycle length — never a guarantee, and never a form of contraception.
+            </p>
+          </details>
+          <details>
+            <summary>Is this suitable if my cycles are irregular?</summary>
+            <p>
+              You can still track symptoms and moods, and the analysis will show the spread of
+              your cycle lengths. If irregularity is new or worrying, please talk to a
+              healthcare professional.
+            </p>
+          </details>
+          <details>
+            <summary>Does Bloom Cycle diagnose PMS or any condition?</summary>
+            <p>
+              No. It offers general education about self-care and helps you notice patterns. It
+              cannot diagnose anything and does not replace professional care.
+            </p>
+          </details>
+          <details>
+            <summary>Can I edit something I logged by mistake?</summary>
+            <p>
+              Yes. Open the tracker, pick that date from the list or the calendar, change the
+              details and save — or delete the entry entirely.
+            </p>
+          </details>
+        </div>
+      </section>
+
+      <!-- ------------------------------- CTA -------------------------------- -->
+      <section class="help-band">
+        <div>
+          <h2 class="card-title">Ready when you are</h2>
+          <p class="small muted" style="margin-top: 8px">
+            You do not need a full history to begin. The first day of your last period is enough
+            for a starting estimate.
+          </p>
+        </div>
+        <div class="soft-panel">
+          <p class="small" style="color: var(--ink-soft)">
+            If this page is part of a course or portfolio project, the code is plain HTML, CSS
+            and JavaScript — open any file and read it.
+          </p>
+          <div class="btn-row">
+            <a class="btn btn-primary btn-sm" href="index.html">Back to the dashboard</a>
+            <a class="btn btn-soft btn-sm" href="pms-relief.html">Browse remedies</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer" data-footer></footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/cycle.js"></script>
+    <script src="js/store.js"></script>
+    <script src="js/ui.js"></script>
+  </body>
+</html>

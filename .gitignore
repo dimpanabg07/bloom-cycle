@@ -1,0 +1,17 @@
+# OS noise
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor / IDE folders
+.vscode/
+.idea/
+
+# Logs and temp files
+*.log
+npm-debug.log*
+.env
+.env.*
+
+# Dependency folders (not used by this project, but safe to ignore)
+node_modules/

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bloom Cycle — a gentle menstrual cycle tracker</title>
+    <meta
+      name="description"
+      content="Bloom Cycle is a calm, private cycle tracker: log symptoms, understand your phases and find gentle relief for PMS."
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='12' fill='%23fbe2ec'/%3E%3Ccircle cx='12' cy='8' r='3.4' fill='%23de7fa4'/%3E%3Ccircle cx='16.2' cy='13' r='3.4' fill='%23b79bec'/%3E%3Ccircle cx='7.8' cy='13' r='3.4' fill='%23f0a8c4'/%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..600&family=Nunito:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/pages.css" />
+  </head>
+
+  <body data-page="home">
+    <a class="sr-only" href="#main">Skip to content</a>
+    <header class="site-header" data-nav></header>
+
+    <main class="app-main container" id="main">
+      <div class="dash">
+        <!-- ------------------------------ Hero ------------------------------ -->
+        <section class="card hero dash-hero" aria-labelledby="greeting">
+          <div class="hero-copy">
+            <p class="eyebrow" id="todayLabel">Today</p>
+            <h1 class="hero-title" id="greeting">Hello, lovely.</h1>
+            <p class="hero-sub" id="heroSub">
+              Let's take a gentle look at where you are in your cycle today.
+            </p>
+
+            <div class="hero-actions">
+              <a class="btn btn-primary" id="logButton" href="tracker.html">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                  <path d="M12 5v14M5 12h14" />
+                </svg>
+                Log today's symptoms
+              </a>
+              <a class="btn btn-soft" href="analysis.html">See my analysis</a>
+            </div>
+
+            <div class="hero-stats">
+              <div class="hero-stat">
+                <b id="statPhase">—</b>
+                <span>Phase</span>
+              </div>
+              <div class="hero-stat">
+                <b id="statNext">—</b>
+                <span>Next period</span>
+              </div>
+              <div class="hero-stat">
+                <b id="statAvg">—</b>
+                <span>Avg cycle</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="ring-block">
+            <svg class="ring" viewBox="0 0 180 180" role="img" aria-labelledby="ringTitle">
+              <title id="ringTitle">Cycle day progress</title>
+              <defs>
+                <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#9b7be0" />
+                  <stop offset="100%" stop-color="#e58aac" />
+                </linearGradient>
+              </defs>
+              <circle class="ring-track" cx="90" cy="90" r="76" />
+              <circle
+                class="ring-progress"
+                cx="90"
+                cy="90"
+                r="76"
+                stroke-dasharray="477.5"
+                stroke-dashoffset="477.5"
+              />
+            </svg>
+            <div class="ring-center">
+              <span class="ring-day" id="ringDay">–</span>
+              <span class="ring-label">cycle day</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- --------------------------- Left column -------------------------- -->
+        <div class="dash-col">
+          <section class="card" aria-labelledby="calendarTitle">
+            <div class="card-head">
+              <div>
+                <h2 class="card-title" id="calendarTitle">Your cycle at a glance</h2>
+                <p class="card-sub">Tap a day to add or edit that day's check-in.</p>
+              </div>
+              <a class="inline-link" href="tracker.html">Open tracker →</a>
+            </div>
+            <div id="homeCalendar"></div>
+          </section>
+
+          <section class="card" aria-labelledby="recentTitle">
+            <div class="card-head">
+              <h2 class="card-title" id="recentTitle">Recent check-ins</h2>
+              <span class="badge badge-soft" id="logCount">0 days logged</span>
+            </div>
+            <div id="recentLogs"></div>
+          </section>
+        </div>
+
+        <!-- --------------------------- Right column ------------------------- -->
+        <div class="dash-col">
+          <section class="card" aria-labelledby="nextTitle">
+            <div class="card-head">
+              <h2 class="card-title" id="nextTitle">Coming up</h2>
+              <span class="badge badge-soft">Estimate</span>
+            </div>
+            <div class="next-period">
+              <span class="next-period-icon" id="nextEmoji">🌷</span>
+              <div>
+                <div class="next-period-value" id="nextDate">Not set yet</div>
+                <p class="small muted" id="nextIn">Add your last period date to begin.</p>
+              </div>
+            </div>
+            <hr class="divider" />
+            <p class="small muted" id="phaseNote">
+              Bloom Cycle learns from what you log and updates your estimates each cycle.
+            </p>
+          </section>
+
+          <section class="card tip-card" aria-labelledby="tipTitle">
+            <div class="card-head">
+              <h2 class="card-title" id="tipTitle">Today's wellness tip</h2>
+              <span aria-hidden="true">🌼</span>
+            </div>
+            <p class="tip-text" id="tipText">Small, kind habits add up.</p>
+            <p class="tip-meta" id="tipMeta">A new tip appears each day</p>
+          </section>
+
+          <section class="card" aria-labelledby="quickTitle">
+            <div class="card-head">
+              <h2 class="card-title" id="quickTitle">Feel better today</h2>
+            </div>
+            <div class="mini-links">
+              <a class="mini-link" href="pms-relief.html">
+                <span class="mini-emoji" aria-hidden="true">🫖</span>
+                <b>PMS relief</b>
+                <small>Warmth, food and rest ideas for tough days.</small>
+              </a>
+              <a class="mini-link" href="exercises.html">
+                <span class="mini-emoji" aria-hidden="true">🧘‍♀️</span>
+                <b>Gentle exercises</b>
+                <small>Short routines you can do in 5–15 minutes.</small>
+              </a>
+            </div>
+          </section>
+
+          <section class="card card-tight" aria-labelledby="streakTitle">
+            <div class="card-head" style="margin-bottom: 10px">
+              <h2 class="card-title" id="streakTitle">Your check-in streak</h2>
+            </div>
+            <div class="streak">
+              <strong id="streakValue">0</strong>
+              <span id="streakText">Log a check-in today to start a streak.</span>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer" data-footer></footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/cycle.js"></script>
+    <script src="js/store.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/home.js"></script>
+  </body>
+</html>

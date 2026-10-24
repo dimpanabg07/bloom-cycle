@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PMS Relief — Bloom Cycle</title>
+    <meta
+      name="description"
+      content="Practical, gentle home remedies for PMS: warmth, hydration, magnesium-rich food, sleep, stretching and more."
+    />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='12' fill='%23fbe2ec'/%3E%3Ccircle cx='12' cy='8' r='3.4' fill='%23de7fa4'/%3E%3Ccircle cx='16.2' cy='13' r='3.4' fill='%23b79bec'/%3E%3Ccircle cx='7.8' cy='13' r='3.4' fill='%23f0a8c4'/%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..600&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/pages.css" />
+  </head>
+
+  <body data-page="relief">
+    <a class="sr-only" href="#main">Skip to content</a>
+    <header class="site-header" data-nav></header>
+
+    <main class="app-main container" id="main">
+      <header class="page-head">
+        <p class="eyebrow">PMS relief</p>
+        <h1>Small comforts for difficult days</h1>
+        <p class="page-sub">
+          None of these will make PMS disappear, and that is okay. They are simple, low-effort
+          things that many people find take the edge off. Try one at a time and notice what
+          actually helps your body.
+        </p>
+      </header>
+
+      <div class="disclaimer">
+        <span aria-hidden="true">🌼</span>
+        <p>
+          <strong>Gentle reminder.</strong> Home remedies can ease discomfort but they do not
+          cure PMS. If your symptoms are severe, last longer than your period, or disrupt work,
+          school or sleep, please speak with a qualified healthcare professional. You deserve
+          proper support, not just coping.
+        </p>
+      </div>
+
+      <!-- Remedy cards are generated from the list in js/data.js -->
+      <section class="remedy-grid section-gap" id="remedyGrid" aria-label="PMS home remedies"></section>
+
+      <!-- ------------------------- When to seek help ------------------------- -->
+      <section class="help-band" aria-labelledby="helpTitle">
+        <div>
+          <h2 class="card-title" id="helpTitle">When it is worth talking to someone</h2>
+          <p class="small muted" style="margin-top: 8px">
+            Self-care has limits, and reaching out is a practical step — not an overreaction.
+          </p>
+          <ul class="remedy-block" style="margin-top: 14px; font-size: 0.88rem; color: var(--ink-soft)">
+            <li>Pain that is not eased by warmth, rest or over-the-counter pain relief.</li>
+            <li>Symptoms that stop you going to work, school or seeing people.</li>
+            <li>Very heavy bleeding, or periods that last much longer than usual.</li>
+            <li>Cycles consistently shorter than 21 days or longer than 35 days.</li>
+            <li>Mood changes that feel overwhelming or last beyond your period.</li>
+            <li>Symptoms that are getting worse cycle after cycle.</li>
+          </ul>
+        </div>
+        <div class="soft-panel">
+          <h3 class="card-title" style="font-size: 1rem">Make it easier to talk about</h3>
+          <p class="small muted" style="margin-top: 8px">
+            Bring your logged cycles with you. Your check-ins are saved on this device, so you
+            can open the tracker and show your symptom history, moods and flow patterns.
+          </p>
+          <div class="btn-row">
+            <a class="btn btn-primary btn-sm" href="tracker.html">Open my tracker</a>
+            <a class="btn btn-soft btn-sm" href="analysis.html">See my patterns</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ------------------------------ How to use -------------------------- -->
+      <section class="card section-gap">
+        <div class="card-head">
+          <div>
+            <h2 class="card-title">Using this page well</h2>
+            <p class="card-sub">A few honest notes before you start.</p>
+          </div>
+        </div>
+        <div class="value-grid">
+          <div class="value-card">
+            <span class="value-emoji" aria-hidden="true">🧪</span>
+            <h3>Try one thing at a time</h3>
+            <p>Change one habit for a cycle or two so you can tell what actually helped.</p>
+          </div>
+          <div class="value-card">
+            <span class="value-emoji" aria-hidden="true">📝</span>
+            <h3>Write down what worked</h3>
+            <p>Add a note to your daily check-in. Patterns are easier to spot than to remember.</p>
+          </div>
+          <div class="value-card">
+            <span class="value-emoji" aria-hidden="true">🤍</span>
+            <h3>Rest is allowed</h3>
+            <p>Doing nothing is a valid remedy. Comfort is not a failure of willpower.</p>
+          </div>
+          <div class="value-card">
+            <span class="value-emoji" aria-hidden="true">🩺</span>
+            <h3>Ask about professional care</h3>
+            <p>A doctor or pharmacist can discuss options that go beyond what is on this page.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer" data-footer></footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/cycle.js"></script>
+    <script src="js/store.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/relief.js"></script>
+  </body>
+</html>
